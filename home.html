@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Navbar Example</title>
+    <style>
+      /* Custom styles for smooth sliding animation */
+      .slide {
+        transition: transform 0.5s ease-in-out;
+      }
+
+      .slider-image {
+        width: 100%;
+        height: 300px;
+        object-fit: cover;
+        min-height: 200px;
+        margin-top: 20px;
+        margin-bottom: 20px;
+      }
+    </style>
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="bg-gray-100">
+    <!-- Navbar -->
+    <nav class="bg-white shadow-md">
+      <div
+        class="container mx-auto px-4 py-3 flex items-center justify-between"
+      >
+        <!-- Logo -->
+        <div class="text-xl font-bold text-gray-800">
+          <a href="#">MyShop</a>
+        </div>
+
+        <!-- Search Bar -->
+        <div class="flex-1 mx-4">
+          <div class="relative">
+            <input
+              id="search-input"
+              type="text"
+              class="w-full pl-10 pr-4 py-2 rounded-md border border-gray-300 focus:border-blue-500 focus:outline-none"
+              placeholder="Search for products..."
+              oninput="filterProducts()"
+            />
+            <span class="absolute left-3 top-2.5 text-gray-500">
+              <svg
+                class="w-5 h-5"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M11 4a7 7 0 100 14 7 7 0 000-14zm0 14l8 8"
+                />
+              </svg>
+            </span>
+          </div>
+        </div>
+
+        <!-- Login / Logout Buttons -->
+        <div>
+          <!-- <a
+            href="login.html"
+            class="text-gray-800 hover:text-blue-600 font-medium mx-2"
+            >Login</a
+          > -->
+          <a
+            href="#"
+            id="logout-btn"
+            class="text-white bg-blue-500 hover:bg-blue-600 font-medium px-4 py-2 rounded-md"
+            >Logout</a
+          >
+        </div>
+      </div>
+    </nav>
+
+    <!-- //////////////////////////////////////////////////////// -->
+    <div class="bg-gray-100 flex items-center justify-center">
+      <!-- Slider Container -->
+      <div class="relative w-full max-w-4xl overflow-hidden">
+        <!-- Slider Images -->
+        <div
+          class="flex transition-transform duration-500 ease-in-out"
+          id="slider"
+        >
+          <img
+            src="https://via.placeholder.com/1024x300/FF5733/FFFFFF?text=Slide+1"
+            alt="Slide 1"
+            class="slider-image"
+          />
+          <img
+            src="https://via.placeholder.com/1024x300/33C1FF/FFFFFF?text=Slide+2"
+            alt="Slide 2"
+            class="slider-image"
+          />
+          <img
+            src="https://via.placeholder.com/1024x300/FF33A6/FFFFFF?text=Slide+3"
+            alt="Slide 3"
+            class="slider-image"
+          />
+        </div>
+
+        <!-- Previous and Next Buttons -->
+        <button
+          class="absolute top-1/2 transform -translate-y-1/2 left-4 bg-gray-800 text-white rounded-full p-2 focus:outline-none"
+          onclick="prevSlide()"
+        >
+          &#10094;
+        </button>
+        <button
+          class="absolute top-1/2 transform -translate-y-1/2 right-4 bg-gray-800 text-white rounded-full p-2 focus:outline-none"
+          onclick="nextSlide()"
+        >
+          &#10095;
+        </button>
+      </div>
+
+      <!-- ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+    </div>
+
+    <!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+    <div
+      class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"
+      id="product-grid"
+    >
+      <!-- Product Cards will be inserted here -->
+    </div>
+
+    <!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+
+    <div class="bg-gray-100">
+      <!-- Footer -->
+      <footer class="bg-gray-800 text-white py-6">
+        <div class="container mx-auto px-6">
+          <!-- Footer Sections -->
+          <div
+            class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"
+          >
+            <!-- About Us Section -->
+            <div>
+              <h2 class="font-semibold text-lg mb-4">About Us</h2>
+              <ul>
+                <li>
+                  <a href="#" class="text-gray-400 hover:text-white"
+                    >Company Information</a
+                  >
+                </li>
+                <li>
+                  <a href="#" class="text-gray-400 hover:text-white">Careers</a>
+                </li>
+                <li>
+                  <a href="#" class="text-gray-400 hover:text-white">Blog</a>
+                </li>
+                <li>
+                  <a href="#" class="text-gray-400 hover:text-white">Press</a>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Customer Service Section -->
+            <div>
+              <h2 class="font-semibold text-lg mb-4">Customer Service</h2>
+              <ul>
+                <li>
+                  <a href="#" class="text-gray-400 hover:text-white"
+                    >Help Center</a
+                  >
+                </li>
+                <li>
+                  <a href="#" class="text-gray-400 hover:text-white"
+                    >Track Your Order</a
+                  >
+                </li>
+                <li>
+                  <a href="#" class="text-gray-400 hover:text-white"
+                    >Returns & Exchanges</a
+                  >
+                </li>
+                <li>
+                  <a href="#" class="text-gray-400 hover:text-white"
+                    >Shipping Info</a
+                  >
+                </li>
+              </ul>
+            </div>
+
+            <!-- Quick Links Section -->
+            <div>
+              <h2 class="font-semibold text-lg mb-4">Quick Links</h2>
+              <ul>
+                <li>
+                  <a href="#" class="text-gray-400 hover:text-white"
+                    >Privacy Policy</a
+                  >
+                </li>
+                <li>
+                  <a href="#" class="text-gray-400 hover:text-white"
+                    >Terms of Service</a
+                  >
+                </li>
+                <li>
+                  <a href="#" class="text-gray-400 hover:text-white">Sitemap</a>
+                </li>
+                <li>
+                  <a href="#" class="text-gray-400 hover:text-white"
+                    >Contact Us</a
+                  >
+                </li>
+              </ul>
+            </div>
+
+            <!-- Social Media Section -->
+            <div>
+              <h2 class="font-semibold text-lg mb-4">Follow Us</h2>
+              <ul class="flex space-x-4">
+                <li>
+                  <a href="#" class="text-gray-400 hover:text-white"
+                    ><i class="fab fa-facebook-f"></i> Facebook</a
+                  >
+                </li>
+                <li>
+                  <a href="#" class="text-gray-400 hover:text-white"
+                    ><i class="fab fa-twitter"></i> Twitter</a
+                  >
+                </li>
+                <li>
+                  <a href="#" class="text-gray-400 hover:text-white"
+                    ><i class="fab fa-instagram"></i> Instagram</a
+                  >
+                </li>
+                <li>
+                  <a href="#" class="text-gray-400 hover:text-white"
+                    ><i class="fab fa-linkedin-in"></i> LinkedIn</a
+                  >
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Bottom Footer Section -->
+          <div class="mt-6 border-t border-gray-600 pt-4 text-center">
+            <p class="text-gray-400 text-sm">
+              &copy; 2024 MyShop. All rights reserved.
+            </p>
+          </div>
+        </div>
+      </footer>
+
+      <!-- Add Font Awesome for social media icons -->
+      <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    </div>
+
+    <script>
+      // Check if the user is logged in
+      const username = localStorage.getItem("username");
+      if (!username) {
+        // If no user is logged in, redirect to the login page
+        window.location.href = "index.html";
+      }
+
+      // Logout functionality
+      document
+        .getElementById("logout-btn")
+        .addEventListener("click", function () {
+          localStorage.removeItem("username"); // Remove user from localStorage
+          window.location.href = "index.html"; // Redirect to login page
+        });
+    </script>
+
+    <script src="index.js"></script>
+  </body>
+</html>

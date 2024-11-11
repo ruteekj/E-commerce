@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        background-color: #f7fafc;
+      }
+    </style>
+  </head>
+  <body class="flex items-center justify-center h-screen">
+    <!-- Login Form -->
+    <div class="bg-white p-8 rounded-lg shadow-md w-80">
+      <h2 class="text-2xl font-semibold mb-4">Login</h2>
+      <form id="login-form">
+        <div class="mb-4">
+          <label for="username" class="block text-gray-700">Username</label>
+          <input
+            type="text"
+            id="username"
+            class="w-full p-2 border border-gray-300 rounded"
+            placeholder="Enter username"
+            required
+          />
+        </div>
+        <div class="mb-4">
+          <label for="password" class="block text-gray-700">Password</label>
+          <input
+            type="password"
+            id="password"
+            class="w-full p-2 border border-gray-300 rounded"
+            placeholder="Enter password"
+            required
+          />
+        </div>
+        <button type="submit" class="w-full bg-blue-500 text-white p-2 rounded">
+          Login
+        </button>
+      </form>
+      <p id="error-message" class="mt-4 text-red-500 hidden">
+        Invalid username or password
+      </p>
+    </div>
+
+    <script>
+      // Mock users data
+      const users = [
+        { username: "testuser", password: "password123" },
+        { username: "ruteek", password: "ruteek123" },
+      ];
+
+      // Handle login form submission
+      document
+        .getElementById("login-form")
+        .addEventListener("submit", function (event) {
+          event.preventDefault();
+
+          const username = document.getElementById("username").value;
+          const password = document.getElementById("password").value;
+
+          // Check if the credentials match any user
+          const user = users.find(
+            (u) => u.username === username && u.password === password
+          );
+
+          if (user) {
+            // Successful login: Store username in localStorage
+            localStorage.setItem("username", username);
+            window.location.href = "home.html"; // Redirect to main page
+          } else {
+            // Invalid credentials: Show error message
+            document.getElementById("error-message").classList.remove("hidden");
+          }
+        });
+    </script>
+  </body>
+</html>
